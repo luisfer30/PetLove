@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/backend/">
+    <Project Path="src/backend/SaaS.Veterinario.Api/SaaS.Veterinario.Api.csproj" />
+    <Project Path="src/backend/SaaS.Veterinario.Application/SaaS.Veterinario.Application.csproj" />
+    <Project Path="src/backend/SaaS.Veterinario.Domain/SaaS.Veterinario.Domain.csproj" />
+    <Project Path="src/backend/SaaS.Veterinario.Infrastructure/SaaS.Veterinario.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SaaS.Veterinario.Application.Tests/SaaS.Veterinario.Application.Tests.csproj" />
+    <Project Path="tests/SaaS.Veterinario.Domain.Tests/SaaS.Veterinario.Domain.Tests.csproj" />
+    <Project Path="tests/SaaS.Veterinario.IntegrationTests/SaaS.Veterinario.IntegrationTests.csproj" />
+  </Folder>
+</Solution>

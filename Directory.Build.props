@@ -1,0 +1,18 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <!-- Los proyectos de tests quedan excluidos de TreatWarningsAsErrors para no bloquear el build por
+       ruido de analizadores en código de prueba; el código de producción sí debe compilar sin warnings. -->
+  <PropertyGroup Condition="!$(MSBuildProjectDirectory.Contains('\tests\')) AND !$(MSBuildProjectDirectory.Contains('/tests/'))">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+</Project>

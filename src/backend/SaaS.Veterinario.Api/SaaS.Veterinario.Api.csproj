@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.9" />
+    <!-- Pin transitivo: Microsoft.OpenApi 2.0.0 tiene una vulnerabilidad conocida (GHSA-v5pm-xwqc-g5wc). -->
+    <PackageReference Include="Microsoft.OpenApi" Version="2.12.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SaaS.Veterinario.Application\SaaS.Veterinario.Application.csproj" />
+    <ProjectReference Include="..\SaaS.Veterinario.Infrastructure\SaaS.Veterinario.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

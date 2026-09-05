@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\SaaS.Veterinario.Domain\SaaS.Veterinario.Domain.csproj" />
+    <ProjectReference Include="..\SaaS.Veterinario.Application\SaaS.Veterinario.Application.csproj" />
+  </ItemGroup>
+
+</Project>

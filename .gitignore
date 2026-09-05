@@ -1,0 +1,45 @@
+## .NET
+bin/
+obj/
+out/
+
+## Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+## Test results
+[Tt]est[Rr]esult*/
+*.trx
+coverage/
+*.coverage
+*.coveragexml
+
+## User-specific files
+*.rsuser
+
+## NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+.nuget/
+
+## Secrets — nunca versionar credenciales reales
+appsettings.*.local.json
+*.pfx
+*.pem
+.env
+.env.*
+
+## OS
+.DS_Store
+Thumbs.db
