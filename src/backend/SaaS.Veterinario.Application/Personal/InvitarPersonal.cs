@@ -15,6 +15,7 @@ public sealed record InvitarPersonalResultado(Guid InvitacionId);
 public sealed class InvitarPersonal(
     IContextoVeterinaria contexto,
     IRepositorioRoles repositorioRoles,
+    IRepositorioInvitaciones repositorioInvitaciones,
     IServicioInvitaciones servicioInvitaciones,
     IServicioCorreo servicioCorreo)
 {
@@ -39,6 +40,17 @@ public sealed class InvitarPersonal(
         if (roles.Count != codigosDistintos.Length)
         {
             throw new ExcepcionAplicacion(CodigosError.PersonalRolInvalido, "Uno o más roles indicados no existen.");
+        }
+
+        // Primera barrera (comprobacion explicita): solo una invitacion PENDIENTE por
+        // veterinaria+correo bloquea una nueva. ACEPTADA/EXPIRADA/CANCELADA no bloquean. El
+        // indice unico parcial en BD es la segunda barrera, solo para condiciones de carrera
+        // -- nunca se captura su violacion aqui como mecanismo normal.
+        if (await repositorioInvitaciones.ExisteInvitacionPendienteAsync(veterinariaId, comando.Correo, cancellationToken))
+        {
+            throw new ExcepcionAplicacion(
+                CodigosError.PersonalInvitacionPendienteExistente,
+                "Ya existe una invitación pendiente para este correo.");
         }
 
         var resultado = await servicioInvitaciones.CrearAsync(

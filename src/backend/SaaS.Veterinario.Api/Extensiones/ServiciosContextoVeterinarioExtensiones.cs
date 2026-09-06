@@ -26,6 +26,7 @@ public static class ServiciosContextoVeterinarioExtensiones
         servicios.AddScoped<IRepositorioMembresias, RepositorioMembresias>();
         servicios.AddScoped<IRepositorioVeterinarias, RepositorioVeterinarias>();
         servicios.AddScoped<IRepositorioRoles, RepositorioRoles>();
+        servicios.AddScoped<IRepositorioInvitaciones, RepositorioInvitaciones>();
         servicios.AddScoped<IServicioInvitaciones, ServicioInvitaciones>();
 
         servicios.AddScoped<ResolverContextoVeterinaria>();

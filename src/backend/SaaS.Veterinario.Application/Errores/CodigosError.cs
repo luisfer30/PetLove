@@ -25,6 +25,7 @@ public static class CodigosError
     public const string VeterinariaNoDisponible = "VETERINARIA_NO_DISPONIBLE";
     public const string AutorizacionPermisoRequerido = "AUTORIZACION_PERMISO_REQUERIDO";
     public const string PersonalRolInvalido = "PERSONAL_ROL_INVALIDO";
+    public const string PersonalInvitacionPendienteExistente = "PERSONAL_INVITACION_PENDIENTE_EXISTENTE";
 
     // Reservado para el flujo de aceptacion de invitaciones (no implementado todavia en esta
     // etapa): se activa cuando alguien intenta activar una membresia y ya tiene otra ACTIVA.
