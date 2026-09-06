@@ -54,15 +54,20 @@ public sealed class PostgresContainerFixture : IAsyncLifetime
 
     public SaaSVeterinarioDbContext CrearDbContext()
     {
+        var opciones = new DbContextOptionsBuilder<SaaSVeterinarioDbContext>()
+            .UseNpgsql(ObtenerCadenaConexion())
+            .Options;
+
+        return new SaaSVeterinarioDbContext(opciones);
+    }
+
+    public string ObtenerCadenaConexion()
+    {
         if (_contenedor is null)
         {
             throw new InvalidOperationException("El contenedor de PostgreSQL no se ha inicializado.");
         }
 
-        var opciones = new DbContextOptionsBuilder<SaaSVeterinarioDbContext>()
-            .UseNpgsql(_contenedor.GetConnectionString())
-            .Options;
-
-        return new SaaSVeterinarioDbContext(opciones);
+        return _contenedor.GetConnectionString();
     }
 }

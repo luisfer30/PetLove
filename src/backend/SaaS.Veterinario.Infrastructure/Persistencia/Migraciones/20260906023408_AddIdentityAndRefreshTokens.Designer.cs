@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SaaS.Veterinario.Infrastructure.Persistencia;
@@ -11,9 +12,11 @@ using SaaS.Veterinario.Infrastructure.Persistencia;
 namespace SaaS.Veterinario.Infrastructure.Persistencia.Migraciones
 {
     [DbContext(typeof(SaaSVeterinarioDbContext))]
-    partial class SaaSVeterinarioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260906023408_AddIdentityAndRefreshTokens")]
+    partial class AddIdentityAndRefreshTokens
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

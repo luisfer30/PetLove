@@ -1,14 +1,22 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SaaS.Veterinario.Domain.Membresias;
 using SaaS.Veterinario.Domain.Permisos;
 using SaaS.Veterinario.Domain.Roles;
 using SaaS.Veterinario.Domain.Usuarios;
 using SaaS.Veterinario.Domain.Veterinarias;
+using SaaS.Veterinario.Infrastructure.Identidad;
 
 namespace SaaS.Veterinario.Infrastructure.Persistencia;
 
+/// <summary>
+/// Hereda de IdentityUserContext (no IdentityDbContext) a proposito: la autorizacion de
+/// esta plataforma se basa en Rol/Permiso de dominio (via MembresiaRol/RolPermiso), nunca
+/// en el sistema de Roles propio de ASP.NET Identity, asi que no tiene sentido crear las
+/// tablas AspNetRoles/AspNetUserRoles/AspNetRoleClaims que nadie va a usar.
+/// </summary>
 public sealed class SaaSVeterinarioDbContext(DbContextOptions<SaaSVeterinarioDbContext> options)
-    : DbContext(options)
+    : IdentityUserContext<UsuarioIdentidad, Guid>(options)
 {
     public DbSet<Usuario> Usuarios => Set<Usuario>();
 
@@ -20,6 +28,8 @@ public sealed class SaaSVeterinarioDbContext(DbContextOptions<SaaSVeterinarioDbC
 
     public DbSet<Permiso> Permisos => Set<Permiso>();
 
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+
     // MembresiaRol y RolPermiso no se exponen como DbSet propio a proposito: son entidades
     // hijas de MembresiaVeterinaria y Rol respectivamente, y se manipulan solo a traves de
     // esos agregados (MembresiaVeterinaria.AsignarRol / Rol.AsignarPermiso). Igual quedan
@@ -27,6 +37,15 @@ public sealed class SaaSVeterinarioDbContext(DbContextOptions<SaaSVeterinarioDbC
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
+        // Simples renombres a snake_case de las tablas hijas que Identity crea por
+        // convencion (AspNetUserClaims/Logins/Tokens); no ameritan su propio
+        // IEntityTypeConfiguration porque no hay nada mas que configurar en ellas.
+        modelBuilder.Entity<Microsoft.AspNetCore.Identity.IdentityUserClaim<Guid>>().ToTable("usuarios_identidad_claims");
+        modelBuilder.Entity<Microsoft.AspNetCore.Identity.IdentityUserLogin<Guid>>().ToTable("usuarios_identidad_logins");
+        modelBuilder.Entity<Microsoft.AspNetCore.Identity.IdentityUserToken<Guid>>().ToTable("usuarios_identidad_tokens");
+
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(SaaSVeterinarioDbContext).Assembly);
     }
 }
