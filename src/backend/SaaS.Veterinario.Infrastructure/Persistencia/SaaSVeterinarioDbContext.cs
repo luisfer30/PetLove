@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SaaS.Veterinario.Domain.Clientes;
+using SaaS.Veterinario.Domain.Mascotas;
 using SaaS.Veterinario.Domain.Membresias;
 using SaaS.Veterinario.Domain.Permisos;
 using SaaS.Veterinario.Domain.Personal;
@@ -32,6 +34,18 @@ public sealed class SaaSVeterinarioDbContext(DbContextOptions<SaaSVeterinarioDbC
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
     public DbSet<InvitacionPersonal> InvitacionesPersonal => Set<InvitacionPersonal>();
+
+    public DbSet<Especie> Especies => Set<Especie>();
+
+    public DbSet<Raza> Razas => Set<Raza>();
+
+    public DbSet<Mascota> Mascotas => Set<Mascota>();
+
+    public DbSet<ClienteVeterinaria> ClientesVeterinaria => Set<ClienteVeterinaria>();
+
+    public DbSet<MascotaVeterinaria> MascotasVeterinaria => Set<MascotaVeterinaria>();
+
+    public DbSet<ResponsableMascota> ResponsablesMascota => Set<ResponsableMascota>();
 
     // MembresiaRol, RolPermiso e InvitacionPersonalRol no se exponen como DbSet propio a
     // proposito: son entidades hijas de sus respectivos agregados raiz (MembresiaVeterinaria,

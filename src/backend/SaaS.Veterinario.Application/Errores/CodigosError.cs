@@ -30,4 +30,15 @@ public static class CodigosError
     // Reservado para el flujo de aceptacion de invitaciones (no implementado todavia en esta
     // etapa): se activa cuando alguien intenta activar una membresia y ya tiene otra ACTIVA.
     public const string PersonalMembresiaActivaExistente = "PERSONAL_MEMBRESIA_ACTIVA_EXISTENTE";
+
+    // Etapa 6: Clientes + Mascotas.
+    public const string MascotaEspecieInvalida = "MASCOTA_ESPECIE_INVALIDA";
+    public const string MascotaRazaInvalida = "MASCOTA_RAZA_INVALIDA";
+    public const string MascotaSexoInvalido = "MASCOTA_SEXO_INVALIDO";
+    public const string MascotaMicrochipDuplicado = "MASCOTA_MICROCHIP_DUPLICADO";
+    public const string MascotaYaRegistradaEnVeterinaria = "MASCOTA_YA_REGISTRADA_EN_VETERINARIA";
+    public const string MascotaNoEncontrada = "MASCOTA_NO_ENCONTRADA";
+    public const string ClienteInvalido = "CLIENTE_INVALIDO";
+    public const string ResponsableTipoRelacionInvalido = "RESPONSABLE_TIPO_RELACION_INVALIDO";
+    public const string ResponsablePrincipalYaExiste = "RESPONSABLE_PRINCIPAL_YA_EXISTE";
 }

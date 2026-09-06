@@ -20,6 +20,16 @@ internal static class ConversionesValorObjetos
         c => c.Valor.GetHashCode(),
         c => c);
 
+    /// <summary>Version nullable de ConversorCorreo, para propiedades Correo? (ej. ClienteVeterinaria, ResponsableMascota).</summary>
+    public static ValueConverter<Correo?, string?> ConversorCorreoNullable { get; } = new(
+        correo => correo == null ? null : correo.Valor,
+        valor => valor == null ? null : Correo.Crear(valor));
+
+    public static ValueComparer<Correo?> ComparadorCorreoNullable { get; } = new(
+        (a, b) => (a == null && b == null) || (a != null && b != null && a.Valor == b.Valor),
+        c => c == null ? 0 : c.Valor.GetHashCode(),
+        c => c);
+
     public static ValueComparer<CodigoPublico> ComparadorCodigoPublico { get; } = new(
         (a, b) => a!.Valor == b!.Valor,
         c => c.Valor.GetHashCode(),

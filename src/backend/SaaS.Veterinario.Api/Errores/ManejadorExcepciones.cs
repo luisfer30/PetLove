@@ -65,6 +65,15 @@ public sealed class ManejadorExcepciones(ILogger<ManejadorExcepciones> logger) :
         CodigosError.PersonalRolInvalido => StatusCodes.Status400BadRequest,
         CodigosError.PersonalInvitacionPendienteExistente => StatusCodes.Status409Conflict,
         CodigosError.PersonalMembresiaActivaExistente => StatusCodes.Status409Conflict,
+        CodigosError.MascotaEspecieInvalida => StatusCodes.Status400BadRequest,
+        CodigosError.MascotaRazaInvalida => StatusCodes.Status400BadRequest,
+        CodigosError.MascotaSexoInvalido => StatusCodes.Status400BadRequest,
+        CodigosError.MascotaMicrochipDuplicado => StatusCodes.Status409Conflict,
+        CodigosError.MascotaYaRegistradaEnVeterinaria => StatusCodes.Status409Conflict,
+        CodigosError.MascotaNoEncontrada => StatusCodes.Status404NotFound,
+        CodigosError.ClienteInvalido => StatusCodes.Status400BadRequest,
+        CodigosError.ResponsableTipoRelacionInvalido => StatusCodes.Status400BadRequest,
+        CodigosError.ResponsablePrincipalYaExiste => StatusCodes.Status409Conflict,
         _ => StatusCodes.Status400BadRequest,
     };
 }
