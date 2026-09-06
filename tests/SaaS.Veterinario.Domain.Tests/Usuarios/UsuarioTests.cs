@@ -85,4 +85,32 @@ public class UsuarioTests
 
         Assert.Equal(EstadoUsuario.Activo, usuario.Estado);
     }
+
+    [Fact]
+    public void ConfirmarCorreo_MarcaCorreoComoVerificado()
+    {
+        var usuario = Usuario.Crear("Ana Perez", "ana@correo.com");
+
+        usuario.ConfirmarCorreo();
+
+        Assert.True(usuario.CorreoVerificado);
+    }
+
+    [Fact]
+    public void ConfirmarTelefono_ConTelefonoRegistrado_MarcaTelefonoComoVerificado()
+    {
+        var usuario = Usuario.Crear("Ana Perez", "ana@correo.com", telefono: "0999999999");
+
+        usuario.ConfirmarTelefono();
+
+        Assert.True(usuario.TelefonoVerificado);
+    }
+
+    [Fact]
+    public void ConfirmarTelefono_SinTelefonoRegistrado_LanzaExcepcionDominio()
+    {
+        var usuario = Usuario.Crear("Ana Perez", "ana@correo.com");
+
+        Assert.Throws<ExcepcionDominio>(() => usuario.ConfirmarTelefono());
+    }
 }

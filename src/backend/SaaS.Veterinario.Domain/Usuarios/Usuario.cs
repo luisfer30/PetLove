@@ -55,6 +55,21 @@ public sealed class Usuario
 
     public void Suspender(DateTimeOffset momento) => CambiarEstado(EstadoUsuario.Suspendido, momento);
 
+    public void ConfirmarCorreo()
+    {
+        CorreoVerificado = true;
+    }
+
+    public void ConfirmarTelefono()
+    {
+        if (string.IsNullOrWhiteSpace(Telefono))
+        {
+            throw new ExcepcionDominio("No se puede confirmar el teléfono porque el usuario no tiene uno registrado.");
+        }
+
+        TelefonoVerificado = true;
+    }
+
     private void CambiarEstado(EstadoUsuario nuevoEstado, DateTimeOffset momento)
     {
         if (!TransicionesPermitidas[Estado].Contains(nuevoEstado))
