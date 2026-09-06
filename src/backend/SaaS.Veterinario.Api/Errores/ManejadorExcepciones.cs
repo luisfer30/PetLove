@@ -59,6 +59,11 @@ public sealed class ManejadorExcepciones(ILogger<ManejadorExcepciones> logger) :
         CodigosError.CorreoExistente => StatusCodes.Status409Conflict,
         CodigosError.TokenInvalido => StatusCodes.Status400BadRequest,
         CodigosError.RegistroInvalido => StatusCodes.Status400BadRequest,
+        CodigosError.ContextoVeterinarioRequerido => StatusCodes.Status403Forbidden,
+        CodigosError.VeterinariaNoDisponible => StatusCodes.Status403Forbidden,
+        CodigosError.AutorizacionPermisoRequerido => StatusCodes.Status403Forbidden,
+        CodigosError.PersonalRolInvalido => StatusCodes.Status400BadRequest,
+        CodigosError.PersonalMembresiaActivaExistente => StatusCodes.Status409Conflict,
         _ => StatusCodes.Status400BadRequest,
     };
 }

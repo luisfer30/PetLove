@@ -108,6 +108,49 @@ public sealed class Veterinaria
             fecha);
     }
 
+    /// <summary>
+    /// Actualiza los datos descriptivos de negocio. No toca Correo (identificador de la
+    /// cuenta, con sus propias implicaciones si cambiara), CodigoPublico, Estado ni
+    /// FechaEliminacion -- esos tienen su propio metodo dedicado o quedan fuera de esta
+    /// version por decision explicita.
+    /// </summary>
+    public void ActualizarInformacion(
+        string nombreComercial,
+        string? razonSocial,
+        string? ruc,
+        string? telefono,
+        string? direccion,
+        string? ciudad,
+        string pais,
+        string zonaHoraria,
+        DateTimeOffset momento)
+    {
+        if (string.IsNullOrWhiteSpace(nombreComercial))
+        {
+            throw new ExcepcionDominio("El nombre comercial de la veterinaria es obligatorio.");
+        }
+
+        if (string.IsNullOrWhiteSpace(pais))
+        {
+            throw new ExcepcionDominio("El país de la veterinaria es obligatorio.");
+        }
+
+        if (string.IsNullOrWhiteSpace(zonaHoraria))
+        {
+            throw new ExcepcionDominio("La zona horaria de la veterinaria es obligatoria.");
+        }
+
+        NombreComercial = nombreComercial.Trim();
+        RazonSocial = NormalizarOpcional(razonSocial);
+        Ruc = NormalizarOpcional(ruc);
+        Telefono = NormalizarOpcional(telefono);
+        Direccion = NormalizarOpcional(direccion);
+        Ciudad = NormalizarOpcional(ciudad);
+        Pais = pais.Trim();
+        ZonaHoraria = zonaHoraria.Trim();
+        FechaActualizacion = momento;
+    }
+
     public void Activar(DateTimeOffset momento) => CambiarEstado(EstadoVeterinaria.Activa, momento);
 
     public void Suspender(DateTimeOffset momento) => CambiarEstado(EstadoVeterinaria.Suspendida, momento);

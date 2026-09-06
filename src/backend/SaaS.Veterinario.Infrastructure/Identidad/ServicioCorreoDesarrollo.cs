@@ -28,4 +28,13 @@ public sealed class ServicioCorreoDesarrollo(ILogger<ServicioCorreoDesarrollo> l
 
         return Task.CompletedTask;
     }
+
+    public Task EnviarInvitacionPersonalAsync(string correo, string token, CancellationToken cancellationToken)
+    {
+        logger.LogInformation(
+            "[DEV] Correo de invitación de personal generado para {Correo} (token omitido de logs).",
+            correo);
+
+        return Task.CompletedTask;
+    }
 }

@@ -19,4 +19,14 @@ public static class CodigosError
     // porque son el mismo tipo de fallo: token invalido, expirado o ya usado).
     public const string TokenInvalido = "AUTENTICACION_TOKEN_INVALIDO";
     public const string RegistroInvalido = "REGISTRO_INVALIDO";
+
+    // Etapa 5: ContextoVeterinaria + autorizacion por permisos.
+    public const string ContextoVeterinarioRequerido = "CONTEXTO_VETERINARIA_REQUERIDO";
+    public const string VeterinariaNoDisponible = "VETERINARIA_NO_DISPONIBLE";
+    public const string AutorizacionPermisoRequerido = "AUTORIZACION_PERMISO_REQUERIDO";
+    public const string PersonalRolInvalido = "PERSONAL_ROL_INVALIDO";
+
+    // Reservado para el flujo de aceptacion de invitaciones (no implementado todavia en esta
+    // etapa): se activa cuando alguien intenta activar una membresia y ya tiene otra ACTIVA.
+    public const string PersonalMembresiaActivaExistente = "PERSONAL_MEMBRESIA_ACTIVA_EXISTENTE";
 }

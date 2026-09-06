@@ -10,4 +10,6 @@ public interface IServicioCorreo
     Task EnviarConfirmacionCorreoAsync(string correo, string token, CancellationToken cancellationToken);
 
     Task EnviarRecuperacionPasswordAsync(string correo, string token, CancellationToken cancellationToken);
+
+    Task EnviarInvitacionPersonalAsync(string correo, string token, CancellationToken cancellationToken);
 }

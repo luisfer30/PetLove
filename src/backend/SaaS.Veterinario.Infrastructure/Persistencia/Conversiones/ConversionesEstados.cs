@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SaaS.Veterinario.Domain.Membresias;
+using SaaS.Veterinario.Domain.Personal;
 using SaaS.Veterinario.Domain.Roles;
 using SaaS.Veterinario.Domain.Usuarios;
 using SaaS.Veterinario.Domain.Veterinarias;
@@ -57,6 +58,17 @@ internal static class ConversionesEstados
     private static readonly Dictionary<string, EstadoRol> EstadoRolPorTexto =
         TextoPorEstadoRol.ToDictionary(par => par.Value, par => par.Key);
 
+    private static readonly Dictionary<EstadoInvitacionPersonal, string> TextoPorEstadoInvitacionPersonal = new()
+    {
+        [EstadoInvitacionPersonal.Pendiente] = "PENDIENTE",
+        [EstadoInvitacionPersonal.Aceptada] = "ACEPTADA",
+        [EstadoInvitacionPersonal.Expirada] = "EXPIRADA",
+        [EstadoInvitacionPersonal.Cancelada] = "CANCELADA",
+    };
+
+    private static readonly Dictionary<string, EstadoInvitacionPersonal> EstadoInvitacionPersonalPorTexto =
+        TextoPorEstadoInvitacionPersonal.ToDictionary(par => par.Value, par => par.Key);
+
     public static ValueConverter<EstadoUsuario, string> ConversorEstadoUsuario { get; } = new(
         estado => TextoPorEstadoUsuario[estado],
         valor => EstadoUsuarioPorTexto[valor]);
@@ -72,4 +84,8 @@ internal static class ConversionesEstados
     public static ValueConverter<EstadoRol, string> ConversorEstadoRol { get; } = new(
         estado => TextoPorEstadoRol[estado],
         valor => EstadoRolPorTexto[valor]);
+
+    public static ValueConverter<EstadoInvitacionPersonal, string> ConversorEstadoInvitacionPersonal { get; } = new(
+        estado => TextoPorEstadoInvitacionPersonal[estado],
+        valor => EstadoInvitacionPersonalPorTexto[valor]);
 }
