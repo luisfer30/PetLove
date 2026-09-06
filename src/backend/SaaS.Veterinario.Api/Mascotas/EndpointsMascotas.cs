@@ -1,8 +1,12 @@
 using SaaS.Veterinario.Api.Autorizacion;
 using SaaS.Veterinario.Api.Consultas;
+using SaaS.Veterinario.Api.Seguimientos;
+using SaaS.Veterinario.Api.Tratamientos;
 using SaaS.Veterinario.Application.Abstracciones;
 using SaaS.Veterinario.Application.Consultas;
 using SaaS.Veterinario.Application.Mascotas;
+using SaaS.Veterinario.Application.Seguimientos;
+using SaaS.Veterinario.Application.Tratamientos;
 
 namespace SaaS.Veterinario.Api.Mascotas;
 
@@ -130,5 +134,29 @@ public static class EndpointsMascotas
                 return Results.Ok(HistorialMascotaResponse.DeAplicacion(historial));
             })
             .RequierePermiso("historial.ver");
+
+        grupo.MapGet("/{id:guid}/programaciones", async (Guid id, ListarProgramacionesPorMascota casoDeUso, CancellationToken cancellationToken) =>
+            {
+                var programaciones = await casoDeUso.EjecutarAsync(id, cancellationToken);
+                return Results.Ok(programaciones.Select(ProgramacionTratamientoResponse.DeDominio));
+            })
+            .RequierePermiso("programaciones.ver");
+
+        grupo.MapGet("/{id:guid}/seguimientos", async (Guid id, ListarSeguimientos casoDeUso, CancellationToken cancellationToken) =>
+            {
+                var seguimientos = await casoDeUso.EjecutarAsync(id, cancellationToken);
+                return Results.Ok(seguimientos.Select(SeguimientoClinicoResponse.DeDominio));
+            })
+            .RequierePermiso("seguimientos.ver");
+
+        grupo.MapPost("/{id:guid}/seguimientos", async (Guid id, CrearSeguimientoRequest solicitud, CrearSeguimientoManual casoDeUso, CancellationToken cancellationToken) =>
+            {
+                var resultado = await casoDeUso.EjecutarAsync(
+                    new CrearSeguimientoManualComando(id, solicitud.ConsultaOrigenId, solicitud.PlanTratamientoId, solicitud.Tipo, solicitud.FechaObjetivo, solicitud.Motivo, solicitud.Notas),
+                    cancellationToken);
+
+                return Results.Ok(new CrearSeguimientoResponse(resultado.SeguimientoId));
+            })
+            .RequierePermiso("seguimientos.crear");
     }
 }

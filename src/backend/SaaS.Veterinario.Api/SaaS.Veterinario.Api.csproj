@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <UserSecretsId>c80b4675-8271-4d5e-b844-33a38e73dd21</UserSecretsId>
+    <!-- Sobrescribe el InvariantGlobalization=true global (Directory.Build.props): la Etapa 8
+         necesita resolver zonas horarias IANA (ej. America/Guayaquil) via TimeZoneInfo, lo cual
+         requiere ICU. En modo invariante esto falla en Windows con TimeZoneNotFoundException.
+         En Linux funciona igual porque lee tzdata del sistema operativo directamente, pero no
+         debemos depender de esa diferencia de plataforma ni de variables de entorno manuales. -->
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>

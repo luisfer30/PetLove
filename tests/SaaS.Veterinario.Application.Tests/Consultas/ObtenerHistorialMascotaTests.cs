@@ -14,6 +14,8 @@ public class ObtenerHistorialMascotaTests
     private readonly Mock<IRepositorioCitas> _repositorioCitas = new();
     private readonly Mock<IRepositorioConsultas> _repositorioConsultas = new();
     private readonly Mock<IRepositorioDiagnosticos> _repositorioDiagnosticos = new();
+    private readonly Mock<IRepositorioPlanesTratamiento> _repositorioPlanes = new();
+    private readonly Mock<IRepositorioSeguimientos> _repositorioSeguimientos = new();
 
     private readonly Guid _veterinariaId = Guid.NewGuid();
     private readonly Guid _mascotaVeterinariaId = Guid.NewGuid();
@@ -21,10 +23,17 @@ public class ObtenerHistorialMascotaTests
     public ObtenerHistorialMascotaTests()
     {
         _contexto.SetupGet(c => c.VeterinariaId).Returns(_veterinariaId);
+        _repositorioPlanes
+            .Setup(r => r.ListarPorMascotaVeterinariaAsync(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync([]);
+        _repositorioSeguimientos
+            .Setup(r => r.ListarPorMascotaVeterinariaAsync(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync([]);
     }
 
     private ObtenerHistorialMascota CrearCasoDeUso() => new(
-        _contexto.Object, _repositorioMascotasVeterinarias.Object, _repositorioCitas.Object, _repositorioConsultas.Object, _repositorioDiagnosticos.Object);
+        _contexto.Object, _repositorioMascotasVeterinarias.Object, _repositorioCitas.Object, _repositorioConsultas.Object,
+        _repositorioDiagnosticos.Object, _repositorioPlanes.Object, _repositorioSeguimientos.Object);
 
     [Fact]
     public async Task EjecutarAsync_ConFichaInexistenteEnLaVeterinaria_LanzaExcepcionAplicacion()

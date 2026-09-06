@@ -1,5 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <!-- Ver justificacion en SaaS.Veterinario.Api.csproj: GeneradorProgramacionesTratamiento
+         (Etapa 8) necesita ICU para resolver zonas horarias IANA via TimeZoneInfo. -->
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\SaaS.Veterinario.Domain\SaaS.Veterinario.Domain.csproj" />
     <ProjectReference Include="..\SaaS.Veterinario.Application\SaaS.Veterinario.Application.csproj" />

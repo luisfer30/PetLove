@@ -2,6 +2,7 @@ using SaaS.Veterinario.Application.Abstracciones;
 using SaaS.Veterinario.Application.Errores;
 using SaaS.Veterinario.Domain.Consultas;
 using SaaS.Veterinario.Domain.Errores;
+using SaaS.Veterinario.Domain.Seguimientos;
 
 namespace SaaS.Veterinario.Application.Consultas;
 
@@ -10,13 +11,18 @@ namespace SaaS.Veterinario.Application.Consultas;
 /// automaticamente (seccion 14) dentro de la MISMA transaccion (seccion 42). ATENDIDA es
 /// alcanzable desde PROGRAMADA, CONFIRMADA o EN_ESPERA (ajuste post-Etapa 7); si la cita esta
 /// en un estado realmente terminal (CANCELADA, NO_ASISTIO, ya ATENDIDA), la transicion falla y
-/// toda la operacion -- incluida la finalizacion de la consulta -- se revierte. IUnidadDeTrabajo
-/// se usa unicamente como frontera transaccional, igual que en RegistrarMascota.
+/// toda la operacion -- incluida la finalizacion de la consulta -- se revierte. Ademas (Etapa 8,
+/// seccion 36/53): si la consulta tiene ProximaFechaControl, se crea automaticamente un
+/// SeguimientoClinico en la MISMA transaccion, protegido de duplicados por
+/// ExisteAutoGeneradoParaConsultaAsync + el indice unico parcial de EsGeneradoDesdeProximoControl
+/// (idempotente si esta operacion se reintenta). IUnidadDeTrabajo se usa unicamente como
+/// frontera transaccional, igual que en RegistrarMascota.
 /// </summary>
 public sealed class FinalizarConsulta(
     IContextoVeterinaria contexto,
     IRepositorioConsultas repositorioConsultas,
     IRepositorioCitas repositorioCitas,
+    IRepositorioSeguimientos repositorioSeguimientos,
     IUnidadDeTrabajo unidadDeTrabajo)
 {
     public async Task EjecutarAsync(Guid consultaId, CancellationToken cancellationToken)
@@ -55,6 +61,25 @@ public sealed class FinalizarConsulta(
                 }
 
                 await repositorioCitas.GuardarCambiosAsync(token);
+            }
+
+            if (consulta.ProximaFechaControl is { } proximaFechaControl
+                && !await repositorioSeguimientos.ExisteAutoGeneradoParaConsultaAsync(consulta.Id, token))
+            {
+                var seguimiento = SeguimientoClinico.Crear(
+                    veterinariaId,
+                    consulta.MascotaVeterinariaId,
+                    consulta.Id,
+                    planTratamientoId: null,
+                    TipoSeguimientoClinico.Control,
+                    proximaFechaControl,
+                    consulta.MotivoProximoControl ?? "Próximo control programado desde la consulta.",
+                    notas: null,
+                    usuarioId,
+                    esGeneradoDesdeProximoControl: true,
+                    momento);
+
+                await repositorioSeguimientos.AgregarAsync(seguimiento, token);
             }
         }, cancellationToken);
     }

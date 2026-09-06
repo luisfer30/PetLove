@@ -12,6 +12,7 @@ public class FinalizarConsultaTests
     private readonly Mock<IContextoVeterinaria> _contexto = new();
     private readonly Mock<IRepositorioConsultas> _repositorioConsultas = new();
     private readonly Mock<IRepositorioCitas> _repositorioCitas = new();
+    private readonly Mock<IRepositorioSeguimientos> _repositorioSeguimientos = new();
     private readonly Mock<IUnidadDeTrabajo> _unidadDeTrabajo = new();
 
     private readonly Guid _veterinariaId = Guid.NewGuid();
@@ -28,7 +29,8 @@ public class FinalizarConsultaTests
             .Returns((Func<CancellationToken, Task> operacion, CancellationToken ct) => operacion(ct));
     }
 
-    private FinalizarConsulta CrearCasoDeUso() => new(_contexto.Object, _repositorioConsultas.Object, _repositorioCitas.Object, _unidadDeTrabajo.Object);
+    private FinalizarConsulta CrearCasoDeUso() => new(
+        _contexto.Object, _repositorioConsultas.Object, _repositorioCitas.Object, _repositorioSeguimientos.Object, _unidadDeTrabajo.Object);
 
     private static ConsultaVeterinaria CrearConsultaBorrador(Guid veterinariaId, Guid? citaId = null)
         => ConsultaVeterinaria.Crear(
@@ -133,5 +135,49 @@ public class FinalizarConsultaTests
         var excepcion = await Assert.ThrowsAsync<ExcepcionAplicacion>(() => casoDeUso.EjecutarAsync(consulta.Id, CancellationToken.None));
 
         Assert.Equal(CodigosError.ConsultaEstadoInvalido, excepcion.Codigo);
+    }
+
+    // ---------- Etapa 8 (seccion 36/53): seguimiento automatico desde ProximaFechaControl ----------
+
+    [Fact]
+    public async Task EjecutarAsync_ConProximaFechaControl_CreaSeguimientoAutomatico()
+    {
+        var consulta = ConsultaVeterinaria.Crear(
+            _veterinariaId, Guid.NewGuid(), null, Guid.NewGuid(), FechaHora, "Motivo",
+            null, null, null, null, null, FechaHora.AddDays(15), "Revisar evolución", Guid.NewGuid());
+        _repositorioConsultas.Setup(r => r.ObtenerPorIdAsync(consulta.Id, _veterinariaId, It.IsAny<CancellationToken>())).ReturnsAsync(consulta);
+        _repositorioSeguimientos
+            .Setup(r => r.ExisteAutoGeneradoParaConsultaAsync(consulta.Id, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(false);
+
+        var casoDeUso = CrearCasoDeUso();
+
+        await casoDeUso.EjecutarAsync(consulta.Id, CancellationToken.None);
+
+        _repositorioSeguimientos.Verify(
+            r => r.AgregarAsync(
+                It.Is<Domain.Seguimientos.SeguimientoClinico>(s =>
+                    s.ConsultaOrigenId == consulta.Id && s.EsGeneradoDesdeProximoControl && s.MascotaVeterinariaId == consulta.MascotaVeterinariaId),
+                It.IsAny<CancellationToken>()),
+            Times.Once);
+    }
+
+    [Fact]
+    public async Task EjecutarAsync_ConProximaFechaControlYaGenerada_NoDuplicaElSeguimiento()
+    {
+        var consulta = ConsultaVeterinaria.Crear(
+            _veterinariaId, Guid.NewGuid(), null, Guid.NewGuid(), FechaHora, "Motivo",
+            null, null, null, null, null, FechaHora.AddDays(15), null, Guid.NewGuid());
+        _repositorioConsultas.Setup(r => r.ObtenerPorIdAsync(consulta.Id, _veterinariaId, It.IsAny<CancellationToken>())).ReturnsAsync(consulta);
+        _repositorioSeguimientos
+            .Setup(r => r.ExisteAutoGeneradoParaConsultaAsync(consulta.Id, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(true);
+
+        var casoDeUso = CrearCasoDeUso();
+
+        await casoDeUso.EjecutarAsync(consulta.Id, CancellationToken.None);
+
+        _repositorioSeguimientos.Verify(
+            r => r.AgregarAsync(It.IsAny<Domain.Seguimientos.SeguimientoClinico>(), It.IsAny<CancellationToken>()), Times.Never);
     }
 }

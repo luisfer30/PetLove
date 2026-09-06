@@ -64,4 +64,21 @@ public static class CodigosError
     public const string DiagnosticoTipoInvalido = "DIAGNOSTICO_TIPO_INVALIDO";
 
     public const string MascotaVeterinariaNoEncontrada = "MASCOTA_VETERINARIA_NO_ENCONTRADA";
+
+    // Etapa 8: Tratamientos + Items + Programaciones + Seguimiento clinico.
+    public const string TratamientoNoEncontrado = "TRATAMIENTO_NO_ENCONTRADO";
+    public const string TratamientoEstadoInvalido = "TRATAMIENTO_ESTADO_INVALIDO";
+    public const string TratamientoConsultaInvalida = "TRATAMIENTO_CONSULTA_INVALIDA";
+    public const string TratamientoRequiereConsultaFinalizada = "TRATAMIENTO_REQUIERE_CONSULTA_FINALIZADA";
+    public const string TratamientoItemNoEncontrado = "TRATAMIENTO_ITEM_NO_ENCONTRADO";
+    public const string TratamientoItemEstadoInvalido = "TRATAMIENTO_ITEM_ESTADO_INVALIDO";
+    public const string TratamientoFrecuenciaInvalida = "TRATAMIENTO_FRECUENCIA_INVALIDA";
+    public const string TratamientoHorarioInvalido = "TRATAMIENTO_HORARIO_INVALIDO";
+
+    public const string ProgramacionNoEncontrada = "PROGRAMACION_NO_ENCONTRADA";
+    public const string ProgramacionEstadoInvalido = "PROGRAMACION_ESTADO_INVALIDO";
+
+    public const string SeguimientoNoEncontrado = "SEGUIMIENTO_NO_ENCONTRADO";
+    public const string SeguimientoEstadoInvalido = "SEGUIMIENTO_ESTADO_INVALIDO";
+    public const string SeguimientoCitaInvalida = "SEGUIMIENTO_CITA_INVALIDA";
 }

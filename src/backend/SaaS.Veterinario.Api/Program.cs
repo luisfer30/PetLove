@@ -7,6 +7,8 @@ using SaaS.Veterinario.Api.Consultas;
 using SaaS.Veterinario.Api.Errores;
 using SaaS.Veterinario.Api.Mascotas;
 using SaaS.Veterinario.Api.Personal;
+using SaaS.Veterinario.Api.Seguimientos;
+using SaaS.Veterinario.Api.Tratamientos;
 using SaaS.Veterinario.Api.Usuarios;
 using SaaS.Veterinario.Api.Veterinarias;
 using SaaS.Veterinario.Api.Extensiones;
@@ -29,6 +31,7 @@ builder.Services.AgregarCasosDeUsoDeAutenticacion();
 builder.Services.AgregarContextoVeterinario();
 builder.Services.AgregarCasosDeUsoDeMascotas();
 builder.Services.AgregarCasosDeUsoDeClinica();
+builder.Services.AgregarCasosDeUsoDeTratamientos();
 builder.Services.AgregarAutorizacionPorPermisos(); // debe ir despues de AgregarAutenticacionJwt
 
 var app = builder.Build();
@@ -57,6 +60,9 @@ app.MapearEndpointsClientes();
 app.MapearEndpointsMascotas();
 app.MapearEndpointsCitas();
 app.MapearEndpointsConsultas();
+app.MapearEndpointsTratamientos();
+app.MapearEndpointsProgramacionesTratamiento();
+app.MapearEndpointsSeguimientos();
 
 app.Run();
 

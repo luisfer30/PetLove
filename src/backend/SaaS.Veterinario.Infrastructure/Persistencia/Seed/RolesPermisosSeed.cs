@@ -55,6 +55,24 @@ internal static class RolesPermisosSeed
     // elegibilidad para ser asignado como el veterinario responsable). Continua la misma serie.
     public static readonly Guid PermisoClinicaEjercerVeterinarioId = new("22222222-0000-0000-0000-000000000030");
 
+    // Etapa 8: Tratamientos + Programaciones + Seguimiento clinico. IDs nuevos que continuan la
+    // misma serie -- las filas anteriores (000001-000030) no se tocan.
+    public static readonly Guid PermisoTratamientosVerId = new("22222222-0000-0000-0000-000000000031");
+    public static readonly Guid PermisoTratamientosCrearId = new("22222222-0000-0000-0000-000000000032");
+    public static readonly Guid PermisoTratamientosEditarId = new("22222222-0000-0000-0000-000000000033");
+    public static readonly Guid PermisoTratamientosActivarId = new("22222222-0000-0000-0000-000000000034");
+    public static readonly Guid PermisoTratamientosSuspenderId = new("22222222-0000-0000-0000-000000000035");
+    public static readonly Guid PermisoTratamientosCompletarId = new("22222222-0000-0000-0000-000000000036");
+    public static readonly Guid PermisoTratamientosCancelarId = new("22222222-0000-0000-0000-000000000037");
+    public static readonly Guid PermisoProgramacionesVerId = new("22222222-0000-0000-0000-000000000038");
+    public static readonly Guid PermisoProgramacionesRegistrarRealizacionId = new("22222222-0000-0000-0000-000000000039");
+    public static readonly Guid PermisoProgramacionesRegistrarOmisionId = new("22222222-0000-0000-0000-000000000040");
+    public static readonly Guid PermisoSeguimientosVerId = new("22222222-0000-0000-0000-000000000041");
+    public static readonly Guid PermisoSeguimientosCrearId = new("22222222-0000-0000-0000-000000000042");
+    public static readonly Guid PermisoSeguimientosEditarId = new("22222222-0000-0000-0000-000000000043");
+    public static readonly Guid PermisoSeguimientosRealizarId = new("22222222-0000-0000-0000-000000000044");
+    public static readonly Guid PermisoSeguimientosCancelarId = new("22222222-0000-0000-0000-000000000045");
+
     public static object[] Roles { get; } =
     [
         new
@@ -115,6 +133,21 @@ internal static class RolesPermisosSeed
         new { Id = PermisoDiagnosticosEditarId, Codigo = "diagnosticos.editar", Nombre = "Editar diagnósticos", Descripcion = (string?)null },
         new { Id = PermisoHistorialVerId, Codigo = "historial.ver", Nombre = "Ver historial clínico", Descripcion = (string?)null },
         new { Id = PermisoClinicaEjercerVeterinarioId, Codigo = "clinica.ejercer_veterinario", Nombre = "Ejercer como veterinario responsable", Descripcion = (string?)null },
+        new { Id = PermisoTratamientosVerId, Codigo = "tratamientos.ver", Nombre = "Ver tratamientos", Descripcion = (string?)null },
+        new { Id = PermisoTratamientosCrearId, Codigo = "tratamientos.crear", Nombre = "Crear tratamientos", Descripcion = (string?)null },
+        new { Id = PermisoTratamientosEditarId, Codigo = "tratamientos.editar", Nombre = "Editar tratamientos", Descripcion = (string?)null },
+        new { Id = PermisoTratamientosActivarId, Codigo = "tratamientos.activar", Nombre = "Activar tratamientos", Descripcion = (string?)null },
+        new { Id = PermisoTratamientosSuspenderId, Codigo = "tratamientos.suspender", Nombre = "Suspender tratamientos", Descripcion = (string?)null },
+        new { Id = PermisoTratamientosCompletarId, Codigo = "tratamientos.completar", Nombre = "Completar tratamientos", Descripcion = (string?)null },
+        new { Id = PermisoTratamientosCancelarId, Codigo = "tratamientos.cancelar", Nombre = "Cancelar tratamientos", Descripcion = (string?)null },
+        new { Id = PermisoProgramacionesVerId, Codigo = "programaciones.ver", Nombre = "Ver programaciones", Descripcion = (string?)null },
+        new { Id = PermisoProgramacionesRegistrarRealizacionId, Codigo = "programaciones.registrar_realizacion", Nombre = "Registrar realización de programaciones", Descripcion = (string?)null },
+        new { Id = PermisoProgramacionesRegistrarOmisionId, Codigo = "programaciones.registrar_omision", Nombre = "Registrar omisión de programaciones", Descripcion = (string?)null },
+        new { Id = PermisoSeguimientosVerId, Codigo = "seguimientos.ver", Nombre = "Ver seguimientos", Descripcion = (string?)null },
+        new { Id = PermisoSeguimientosCrearId, Codigo = "seguimientos.crear", Nombre = "Crear seguimientos", Descripcion = (string?)null },
+        new { Id = PermisoSeguimientosEditarId, Codigo = "seguimientos.editar", Nombre = "Editar seguimientos", Descripcion = (string?)null },
+        new { Id = PermisoSeguimientosRealizarId, Codigo = "seguimientos.realizar", Nombre = "Realizar seguimientos", Descripcion = (string?)null },
+        new { Id = PermisoSeguimientosCancelarId, Codigo = "seguimientos.cancelar", Nombre = "Cancelar seguimientos", Descripcion = (string?)null },
     ];
 
     public static object[] RolesPermisos { get; } =
@@ -200,5 +233,35 @@ internal static class RolesPermisosSeed
         // -- ni ADMINISTRADOR_VETERINARIA ni ASISTENTE lo reciben por defecto. Un administrador
         // que tambien ejerce como veterinario necesita ademas el rol VETERINARIO.
         new { RolId = RolVeterinarioId, PermisoId = PermisoClinicaEjercerVeterinarioId },
+
+        // Etapa 8 -- ADMINISTRADOR_VETERINARIA: solo lectura, nunca escritura clinica (seccion 45).
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoTratamientosVerId },
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoProgramacionesVerId },
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoSeguimientosVerId },
+
+        // Etapa 8 -- VETERINARIO: control clinico completo de tratamientos/programaciones/seguimientos.
+        new { RolId = RolVeterinarioId, PermisoId = PermisoTratamientosVerId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoTratamientosCrearId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoTratamientosEditarId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoTratamientosActivarId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoTratamientosSuspenderId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoTratamientosCompletarId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoTratamientosCancelarId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoProgramacionesVerId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoProgramacionesRegistrarRealizacionId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoProgramacionesRegistrarOmisionId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoSeguimientosVerId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoSeguimientosCrearId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoSeguimientosEditarId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoSeguimientosRealizarId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoSeguimientosCancelarId },
+
+        // Etapa 8 -- ASISTENTE: ve tratamientos y registra ejecucion/omision de programaciones,
+        // pero NUNCA crea/modifica el tratamiento clinico en si (seccion 45).
+        new { RolId = RolAsistenteId, PermisoId = PermisoTratamientosVerId },
+        new { RolId = RolAsistenteId, PermisoId = PermisoProgramacionesVerId },
+        new { RolId = RolAsistenteId, PermisoId = PermisoProgramacionesRegistrarRealizacionId },
+        new { RolId = RolAsistenteId, PermisoId = PermisoProgramacionesRegistrarOmisionId },
+        new { RolId = RolAsistenteId, PermisoId = PermisoSeguimientosVerId },
     ];
 }

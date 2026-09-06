@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <IsPackable>false</IsPackable>
+    <!-- Ver justificacion en SaaS.Veterinario.Api.csproj: las pruebas de GeneradorProgramaciones
+         Tratamiento (Etapa 8) necesitan ICU para resolver zonas horarias IANA via TimeZoneInfo. -->
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>

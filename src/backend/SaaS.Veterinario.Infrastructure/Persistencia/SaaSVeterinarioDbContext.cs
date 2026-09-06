@@ -8,6 +8,8 @@ using SaaS.Veterinario.Domain.Membresias;
 using SaaS.Veterinario.Domain.Permisos;
 using SaaS.Veterinario.Domain.Personal;
 using SaaS.Veterinario.Domain.Roles;
+using SaaS.Veterinario.Domain.Seguimientos;
+using SaaS.Veterinario.Domain.Tratamientos;
 using SaaS.Veterinario.Domain.Usuarios;
 using SaaS.Veterinario.Domain.Veterinarias;
 using SaaS.Veterinario.Infrastructure.Identidad;
@@ -54,6 +56,17 @@ public sealed class SaaSVeterinarioDbContext(DbContextOptions<SaaSVeterinarioDbC
     public DbSet<ConsultaVeterinaria> Consultas => Set<ConsultaVeterinaria>();
 
     public DbSet<DiagnosticoConsulta> DiagnosticosConsulta => Set<DiagnosticoConsulta>();
+
+    public DbSet<PlanTratamiento> PlanesTratamiento => Set<PlanTratamiento>();
+
+    public DbSet<ItemTratamiento> ItemsTratamiento => Set<ItemTratamiento>();
+
+    public DbSet<ProgramacionTratamiento> ProgramacionesTratamiento => Set<ProgramacionTratamiento>();
+
+    public DbSet<SeguimientoClinico> SeguimientosClinicos => Set<SeguimientoClinico>();
+
+    // HorarioItemTratamiento no se expone como DbSet propio: es hijo de ItemTratamiento (mismo
+    // patron que Roles en InvitacionPersonal), creado solo dentro de ItemTratamiento.Crear().
 
     // MembresiaRol, RolPermiso e InvitacionPersonalRol no se exponen como DbSet propio a
     // proposito: son entidades hijas de sus respectivos agregados raiz (MembresiaVeterinaria,

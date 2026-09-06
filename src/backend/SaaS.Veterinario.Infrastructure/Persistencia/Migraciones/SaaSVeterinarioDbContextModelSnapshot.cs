@@ -1025,6 +1025,96 @@ namespace SaaS.Veterinario.Infrastructure.Persistencia.Migraciones
                             Id = new Guid("22222222-0000-0000-0000-000000000030"),
                             Codigo = "clinica.ejercer_veterinario",
                             Nombre = "Ejercer como veterinario responsable"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000031"),
+                            Codigo = "tratamientos.ver",
+                            Nombre = "Ver tratamientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000032"),
+                            Codigo = "tratamientos.crear",
+                            Nombre = "Crear tratamientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000033"),
+                            Codigo = "tratamientos.editar",
+                            Nombre = "Editar tratamientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000034"),
+                            Codigo = "tratamientos.activar",
+                            Nombre = "Activar tratamientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000035"),
+                            Codigo = "tratamientos.suspender",
+                            Nombre = "Suspender tratamientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000036"),
+                            Codigo = "tratamientos.completar",
+                            Nombre = "Completar tratamientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000037"),
+                            Codigo = "tratamientos.cancelar",
+                            Nombre = "Cancelar tratamientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000038"),
+                            Codigo = "programaciones.ver",
+                            Nombre = "Ver programaciones"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000039"),
+                            Codigo = "programaciones.registrar_realizacion",
+                            Nombre = "Registrar realización de programaciones"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000040"),
+                            Codigo = "programaciones.registrar_omision",
+                            Nombre = "Registrar omisión de programaciones"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000041"),
+                            Codigo = "seguimientos.ver",
+                            Nombre = "Ver seguimientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000042"),
+                            Codigo = "seguimientos.crear",
+                            Nombre = "Crear seguimientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000043"),
+                            Codigo = "seguimientos.editar",
+                            Nombre = "Editar seguimientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000044"),
+                            Codigo = "seguimientos.realizar",
+                            Nombre = "Realizar seguimientos"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-0000-0000-0000-000000000045"),
+                            Codigo = "seguimientos.cancelar",
+                            Nombre = "Cancelar seguimientos"
                         });
                 });
 
@@ -1475,7 +1565,542 @@ namespace SaaS.Veterinario.Infrastructure.Persistencia.Migraciones
                         {
                             RolId = new Guid("11111111-0000-0000-0000-000000000002"),
                             PermisoId = new Guid("22222222-0000-0000-0000-000000000030")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000001"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000031")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000001"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000038")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000001"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000041")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000031")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000032")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000033")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000034")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000035")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000036")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000037")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000038")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000039")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000040")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000041")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000042")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000043")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000044")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000045")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000003"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000031")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000003"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000038")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000003"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000039")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000003"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000040")
+                        },
+                        new
+                        {
+                            RolId = new Guid("11111111-0000-0000-0000-000000000003"),
+                            PermisoId = new Guid("22222222-0000-0000-0000-000000000041")
                         });
+                });
+
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Seguimientos.SeguimientoClinico", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("ActualizadoPorUsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("actualizado_por_usuario_id");
+
+                    b.Property<Guid?>("CitaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("cita_id");
+
+                    b.Property<Guid?>("ConsultaOrigenId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("consulta_origen_id");
+
+                    b.Property<Guid>("CreadoPorUsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("creado_por_usuario_id");
+
+                    b.Property<bool>("EsGeneradoDesdeProximoControl")
+                        .HasColumnType("boolean")
+                        .HasColumnName("es_generado_desde_proximo_control");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("estado");
+
+                    b.Property<DateTimeOffset>("FechaActualizacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_actualizacion");
+
+                    b.Property<DateTimeOffset?>("FechaAgendada")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_agendada");
+
+                    b.Property<DateTimeOffset>("FechaCreacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_creacion");
+
+                    b.Property<DateTimeOffset>("FechaObjetivo")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_objetivo");
+
+                    b.Property<DateTimeOffset?>("FechaRealizacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_realizacion");
+
+                    b.Property<Guid>("MascotaVeterinariaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("mascota_veterinaria_id");
+
+                    b.Property<string>("Motivo")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)")
+                        .HasColumnName("motivo");
+
+                    b.Property<string>("Notas")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)")
+                        .HasColumnName("notas");
+
+                    b.Property<Guid?>("PlanTratamientoId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("plan_tratamiento_id");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("tipo");
+
+                    b.Property<Guid>("VeterinariaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("veterinaria_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActualizadoPorUsuarioId");
+
+                    b.HasIndex("CitaId");
+
+                    b.HasIndex("ConsultaOrigenId")
+                        .IsUnique()
+                        .HasDatabaseName("ux_seguimientos_clinicos_consulta_origen_auto_generado")
+                        .HasFilter("es_generado_desde_proximo_control = true");
+
+                    b.HasIndex("CreadoPorUsuarioId");
+
+                    b.HasIndex("MascotaVeterinariaId");
+
+                    b.HasIndex("PlanTratamientoId");
+
+                    b.HasIndex("VeterinariaId", "MascotaVeterinariaId", "FechaObjetivo")
+                        .HasDatabaseName("ix_seguimientos_clinicos_veterinaria_mascota_veterinaria_fecha");
+
+                    b.ToTable("seguimientos_clinicos", (string)null);
+                });
+
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Tratamientos.HorarioItemTratamiento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<TimeOnly>("Hora")
+                        .HasColumnType("time without time zone")
+                        .HasColumnName("hora");
+
+                    b.Property<Guid>("ItemTratamientoId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("item_tratamiento_id");
+
+                    b.Property<int>("Orden")
+                        .HasColumnType("integer")
+                        .HasColumnName("orden");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemTratamientoId", "Hora")
+                        .IsUnique()
+                        .HasDatabaseName("ux_horarios_items_tratamiento_item_hora");
+
+                    b.ToTable("horarios_items_tratamiento", (string)null);
+                });
+
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Tratamientos.ItemTratamiento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)")
+                        .HasColumnName("descripcion");
+
+                    b.Property<decimal?>("DosisCantidad")
+                        .HasPrecision(8, 3)
+                        .HasColumnType("numeric(8,3)")
+                        .HasColumnName("dosis_cantidad");
+
+                    b.Property<string>("DosisUnidad")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("dosis_unidad");
+
+                    b.Property<int?>("DuracionDias")
+                        .HasColumnType("integer")
+                        .HasColumnName("duracion_dias");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("estado");
+
+                    b.Property<DateTimeOffset>("FechaActualizacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_actualizacion");
+
+                    b.Property<DateTimeOffset>("FechaCreacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_creacion");
+
+                    b.Property<DateTimeOffset?>("FechaFin")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_fin");
+
+                    b.Property<DateTimeOffset>("FechaInicio")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_inicio");
+
+                    b.Property<string>("FrecuenciaTipo")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("frecuencia_tipo");
+
+                    b.Property<string>("Instrucciones")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)")
+                        .HasColumnName("instrucciones");
+
+                    b.Property<int?>("IntervaloHoras")
+                        .HasColumnType("integer")
+                        .HasColumnName("intervalo_horas");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("nombre");
+
+                    b.Property<int>("Orden")
+                        .HasColumnType("integer")
+                        .HasColumnName("orden");
+
+                    b.Property<Guid>("PlanTratamientoId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("plan_tratamiento_id");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("tipo");
+
+                    b.Property<int?>("VecesPorDia")
+                        .HasColumnType("integer")
+                        .HasColumnName("veces_por_dia");
+
+                    b.Property<string>("ViaAdministracion")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("via_administracion");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlanTratamientoId")
+                        .HasDatabaseName("ix_items_tratamiento_plan_tratamiento_id");
+
+                    b.ToTable("items_tratamiento", (string)null);
+                });
+
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Tratamientos.PlanTratamiento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid?>("ActualizadoPorUsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("actualizado_por_usuario_id");
+
+                    b.Property<Guid?>("CanceladoPorUsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("cancelado_por_usuario_id");
+
+                    b.Property<Guid?>("CompletadoPorUsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("completado_por_usuario_id");
+
+                    b.Property<Guid?>("ConsultaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("consulta_id");
+
+                    b.Property<Guid>("CreadoPorUsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("creado_por_usuario_id");
+
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)")
+                        .HasColumnName("descripcion");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("estado");
+
+                    b.Property<DateTimeOffset>("FechaActualizacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_actualizacion");
+
+                    b.Property<DateTimeOffset?>("FechaCancelacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_cancelacion");
+
+                    b.Property<DateTimeOffset?>("FechaCompletado")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_completado");
+
+                    b.Property<DateTimeOffset>("FechaCreacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_creacion");
+
+                    b.Property<DateTimeOffset?>("FechaFinEstimada")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_fin_estimada");
+
+                    b.Property<DateTimeOffset>("FechaInicio")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_inicio");
+
+                    b.Property<DateTimeOffset?>("FechaSuspension")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_suspension");
+
+                    b.Property<Guid>("MascotaVeterinariaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("mascota_veterinaria_id");
+
+                    b.Property<string>("MotivoCancelacion")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("motivo_cancelacion");
+
+                    b.Property<string>("MotivoSuspension")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("motivo_suspension");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("nombre");
+
+                    b.Property<Guid?>("SuspendidoPorUsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("suspendido_por_usuario_id");
+
+                    b.Property<Guid>("VeterinariaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("veterinaria_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActualizadoPorUsuarioId");
+
+                    b.HasIndex("CanceladoPorUsuarioId");
+
+                    b.HasIndex("CompletadoPorUsuarioId");
+
+                    b.HasIndex("ConsultaId");
+
+                    b.HasIndex("CreadoPorUsuarioId");
+
+                    b.HasIndex("MascotaVeterinariaId");
+
+                    b.HasIndex("SuspendidoPorUsuarioId");
+
+                    b.HasIndex("VeterinariaId", "Estado")
+                        .HasDatabaseName("ix_planes_tratamiento_veterinaria_estado");
+
+                    b.HasIndex("VeterinariaId", "MascotaVeterinariaId")
+                        .HasDatabaseName("ix_planes_tratamiento_veterinaria_mascota_veterinaria");
+
+                    b.ToTable("planes_tratamiento", (string)null);
+                });
+
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Tratamientos.ProgramacionTratamiento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("estado");
+
+                    b.Property<DateTimeOffset>("FechaActualizacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_actualizacion");
+
+                    b.Property<DateTimeOffset>("FechaCreacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_creacion");
+
+                    b.Property<DateTimeOffset>("FechaHoraProgramada")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_hora_programada");
+
+                    b.Property<DateTimeOffset?>("FechaRealizacion")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fecha_realizacion");
+
+                    b.Property<Guid>("ItemTratamientoId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("item_tratamiento_id");
+
+                    b.Property<Guid>("MascotaVeterinariaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("mascota_veterinaria_id");
+
+                    b.Property<string>("ObservacionRealizacion")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("observacion_realizacion");
+
+                    b.Property<Guid>("PlanTratamientoId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("plan_tratamiento_id");
+
+                    b.Property<Guid?>("RegistradoPorUsuarioId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("registrado_por_usuario_id");
+
+                    b.Property<Guid>("VeterinariaId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("veterinaria_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MascotaVeterinariaId");
+
+                    b.HasIndex("RegistradoPorUsuarioId");
+
+                    b.HasIndex("ItemTratamientoId", "FechaHoraProgramada")
+                        .IsUnique()
+                        .HasDatabaseName("ux_programaciones_tratamiento_item_fecha");
+
+                    b.HasIndex("PlanTratamientoId", "Estado")
+                        .HasDatabaseName("ix_programaciones_tratamiento_plan_estado");
+
+                    b.HasIndex("VeterinariaId", "FechaHoraProgramada")
+                        .HasDatabaseName("ix_programaciones_tratamiento_veterinaria_fecha");
+
+                    b.ToTable("programaciones_tratamiento", (string)null);
                 });
 
             modelBuilder.Entity("SaaS.Veterinario.Domain.Usuarios.Usuario", b =>
@@ -2014,6 +2639,143 @@ namespace SaaS.Veterinario.Infrastructure.Persistencia.Migraciones
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Seguimientos.SeguimientoClinico", b =>
+                {
+                    b.HasOne("SaaS.Veterinario.Domain.Usuarios.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("ActualizadoPorUsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SaaS.Veterinario.Domain.Citas.Cita", null)
+                        .WithMany()
+                        .HasForeignKey("CitaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SaaS.Veterinario.Domain.Consultas.ConsultaVeterinaria", null)
+                        .WithMany()
+                        .HasForeignKey("ConsultaOrigenId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SaaS.Veterinario.Domain.Usuarios.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("CreadoPorUsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SaaS.Veterinario.Domain.Mascotas.MascotaVeterinaria", null)
+                        .WithMany()
+                        .HasForeignKey("MascotaVeterinariaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SaaS.Veterinario.Domain.Tratamientos.PlanTratamiento", null)
+                        .WithMany()
+                        .HasForeignKey("PlanTratamientoId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SaaS.Veterinario.Domain.Veterinarias.Veterinaria", null)
+                        .WithMany()
+                        .HasForeignKey("VeterinariaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Tratamientos.HorarioItemTratamiento", b =>
+                {
+                    b.HasOne("SaaS.Veterinario.Domain.Tratamientos.ItemTratamiento", null)
+                        .WithMany("Horarios")
+                        .HasForeignKey("ItemTratamientoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Tratamientos.ItemTratamiento", b =>
+                {
+                    b.HasOne("SaaS.Veterinario.Domain.Tratamientos.PlanTratamiento", null)
+                        .WithMany()
+                        .HasForeignKey("PlanTratamientoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Tratamientos.PlanTratamiento", b =>
+                {
+                    b.HasOne("SaaS.Veterinario.Domain.Usuarios.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("ActualizadoPorUsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SaaS.Veterinario.Domain.Usuarios.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("CanceladoPorUsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SaaS.Veterinario.Domain.Usuarios.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("CompletadoPorUsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SaaS.Veterinario.Domain.Consultas.ConsultaVeterinaria", null)
+                        .WithMany()
+                        .HasForeignKey("ConsultaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SaaS.Veterinario.Domain.Usuarios.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("CreadoPorUsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SaaS.Veterinario.Domain.Mascotas.MascotaVeterinaria", null)
+                        .WithMany()
+                        .HasForeignKey("MascotaVeterinariaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SaaS.Veterinario.Domain.Usuarios.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("SuspendidoPorUsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SaaS.Veterinario.Domain.Veterinarias.Veterinaria", null)
+                        .WithMany()
+                        .HasForeignKey("VeterinariaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Tratamientos.ProgramacionTratamiento", b =>
+                {
+                    b.HasOne("SaaS.Veterinario.Domain.Tratamientos.ItemTratamiento", null)
+                        .WithMany()
+                        .HasForeignKey("ItemTratamientoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SaaS.Veterinario.Domain.Mascotas.MascotaVeterinaria", null)
+                        .WithMany()
+                        .HasForeignKey("MascotaVeterinariaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SaaS.Veterinario.Domain.Tratamientos.PlanTratamiento", null)
+                        .WithMany()
+                        .HasForeignKey("PlanTratamientoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SaaS.Veterinario.Domain.Usuarios.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("RegistradoPorUsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SaaS.Veterinario.Domain.Veterinarias.Veterinaria", null)
+                        .WithMany()
+                        .HasForeignKey("VeterinariaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SaaS.Veterinario.Infrastructure.Identidad.RefreshToken", b =>
                 {
                     b.HasOne("SaaS.Veterinario.Domain.Usuarios.Usuario", null)
@@ -2045,6 +2807,11 @@ namespace SaaS.Veterinario.Infrastructure.Persistencia.Migraciones
             modelBuilder.Entity("SaaS.Veterinario.Domain.Roles.Rol", b =>
                 {
                     b.Navigation("Permisos");
+                });
+
+            modelBuilder.Entity("SaaS.Veterinario.Domain.Tratamientos.ItemTratamiento", b =>
+                {
+                    b.Navigation("Horarios");
                 });
 #pragma warning restore 612, 618
         }
