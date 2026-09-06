@@ -1,5 +1,7 @@
 using SaaS.Veterinario.Api.Autorizacion;
+using SaaS.Veterinario.Api.Consultas;
 using SaaS.Veterinario.Application.Abstracciones;
+using SaaS.Veterinario.Application.Consultas;
 using SaaS.Veterinario.Application.Mascotas;
 
 namespace SaaS.Veterinario.Api.Mascotas;
@@ -121,5 +123,12 @@ public static class EndpointsMascotas
                 return Results.Ok(new RegistrarResponsableResponse(resultado.ResponsableId));
             })
             .RequierePermiso("responsables.crear");
+
+        grupo.MapGet("/{id:guid}/historial", async (Guid id, ObtenerHistorialMascota casoDeUso, CancellationToken cancellationToken) =>
+            {
+                var historial = await casoDeUso.EjecutarAsync(id, cancellationToken);
+                return Results.Ok(HistorialMascotaResponse.DeAplicacion(historial));
+            })
+            .RequierePermiso("historial.ver");
     }
 }

@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using SaaS.Veterinario.Api.Autenticacion;
+using SaaS.Veterinario.Api.Citas;
 using SaaS.Veterinario.Api.Clientes;
 using SaaS.Veterinario.Api.ContextoVeterinario;
+using SaaS.Veterinario.Api.Consultas;
 using SaaS.Veterinario.Api.Errores;
 using SaaS.Veterinario.Api.Mascotas;
 using SaaS.Veterinario.Api.Personal;
@@ -26,6 +28,7 @@ builder.Services.AgregarLimitadorDeVelocidad(builder.Configuration);
 builder.Services.AgregarCasosDeUsoDeAutenticacion();
 builder.Services.AgregarContextoVeterinario();
 builder.Services.AgregarCasosDeUsoDeMascotas();
+builder.Services.AgregarCasosDeUsoDeClinica();
 builder.Services.AgregarAutorizacionPorPermisos(); // debe ir despues de AgregarAutenticacionJwt
 
 var app = builder.Build();
@@ -52,6 +55,8 @@ app.MapearEndpointsVeterinarias();
 app.MapearEndpointsPersonal();
 app.MapearEndpointsClientes();
 app.MapearEndpointsMascotas();
+app.MapearEndpointsCitas();
+app.MapearEndpointsConsultas();
 
 app.Run();
 

@@ -41,4 +41,27 @@ public static class CodigosError
     public const string ClienteInvalido = "CLIENTE_INVALIDO";
     public const string ResponsableTipoRelacionInvalido = "RESPONSABLE_TIPO_RELACION_INVALIDO";
     public const string ResponsablePrincipalYaExiste = "RESPONSABLE_PRINCIPAL_YA_EXISTE";
+
+    // Etapa 7: Agenda + Consultas + Diagnosticos.
+    public const string CitaNoEncontrada = "CITA_NO_ENCONTRADA";
+    public const string CitaEstadoInvalido = "CITA_ESTADO_INVALIDO";
+    public const string CitaHorarioInvalido = "CITA_HORARIO_INVALIDO";
+    public const string CitaHorarioNoDisponible = "CITA_HORARIO_NO_DISPONIBLE";
+    public const string CitaVeterinarioInvalido = "CITA_VETERINARIO_INVALIDO";
+
+    public const string ConsultaNoEncontrada = "CONSULTA_NO_ENCONTRADA";
+    public const string ConsultaEstadoInvalido = "CONSULTA_ESTADO_INVALIDO";
+    public const string ConsultaFinalizadaNoEditable = "CONSULTA_FINALIZADA_NO_EDITABLE";
+    public const string ConsultaVeterinarioInvalido = "CONSULTA_VETERINARIO_INVALIDO";
+    public const string ConsultaCitaInvalida = "CONSULTA_CITA_INVALIDA";
+
+    public const string DiagnosticoNoEncontrado = "DIAGNOSTICO_NO_ENCONTRADO";
+    public const string DiagnosticoPrincipalExistente = "DIAGNOSTICO_PRINCIPAL_EXISTENTE";
+    public const string DiagnosticoConsultaNoEditable = "DIAGNOSTICO_CONSULTA_NO_EDITABLE";
+
+    // No enumerado explicitamente en el pedido original; se agrega siguiendo el mismo patron
+    // que MascotaSexoInvalido (Etapa 6) para no dejar sin codigo un Tipo de enum invalido.
+    public const string DiagnosticoTipoInvalido = "DIAGNOSTICO_TIPO_INVALIDO";
+
+    public const string MascotaVeterinariaNoEncontrada = "MASCOTA_VETERINARIA_NO_ENCONTRADA";
 }

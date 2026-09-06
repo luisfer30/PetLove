@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SaaS.Veterinario.Infrastructure.Persistencia;
@@ -11,9 +12,11 @@ using SaaS.Veterinario.Infrastructure.Persistencia;
 namespace SaaS.Veterinario.Infrastructure.Persistencia.Migraciones
 {
     [DbContext(typeof(SaaSVeterinarioDbContext))]
-    partial class SaaSVeterinarioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260906055148_AddAppointmentsAndClinicalConsultations")]
+    partial class AddAppointmentsAndClinicalConsultations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1019,12 +1022,6 @@ namespace SaaS.Veterinario.Infrastructure.Persistencia.Migraciones
                             Id = new Guid("22222222-0000-0000-0000-000000000029"),
                             Codigo = "historial.ver",
                             Nombre = "Ver historial clínico"
-                        },
-                        new
-                        {
-                            Id = new Guid("22222222-0000-0000-0000-000000000030"),
-                            Codigo = "clinica.ejercer_veterinario",
-                            Nombre = "Ejercer como veterinario responsable"
                         });
                 });
 
@@ -1470,11 +1467,6 @@ namespace SaaS.Veterinario.Infrastructure.Persistencia.Migraciones
                         {
                             RolId = new Guid("11111111-0000-0000-0000-000000000003"),
                             PermisoId = new Guid("22222222-0000-0000-0000-000000000021")
-                        },
-                        new
-                        {
-                            RolId = new Guid("11111111-0000-0000-0000-000000000002"),
-                            PermisoId = new Guid("22222222-0000-0000-0000-000000000030")
                         });
                 });
 

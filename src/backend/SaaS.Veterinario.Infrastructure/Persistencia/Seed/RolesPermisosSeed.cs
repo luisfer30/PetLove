@@ -32,6 +32,29 @@ internal static class RolesPermisosSeed
     public static readonly Guid PermisoResponsablesCrearId = new("22222222-0000-0000-0000-000000000014");
     public static readonly Guid PermisoResponsablesEditarId = new("22222222-0000-0000-0000-000000000015");
 
+    // Etapa 7: Agenda + Consultas + Diagnosticos. IDs nuevos que continuan la misma serie --
+    // las filas anteriores (000001-000015) no se tocan.
+    public static readonly Guid PermisoCitasVerId = new("22222222-0000-0000-0000-000000000016");
+    public static readonly Guid PermisoCitasCrearId = new("22222222-0000-0000-0000-000000000017");
+    public static readonly Guid PermisoCitasEditarId = new("22222222-0000-0000-0000-000000000018");
+    public static readonly Guid PermisoCitasCancelarId = new("22222222-0000-0000-0000-000000000019");
+    public static readonly Guid PermisoCitasCambiarEstadoId = new("22222222-0000-0000-0000-000000000020");
+    public static readonly Guid PermisoConsultasVerId = new("22222222-0000-0000-0000-000000000021");
+    public static readonly Guid PermisoConsultasCrearId = new("22222222-0000-0000-0000-000000000022");
+    public static readonly Guid PermisoConsultasEditarBorradorId = new("22222222-0000-0000-0000-000000000023");
+    public static readonly Guid PermisoConsultasFinalizarId = new("22222222-0000-0000-0000-000000000024");
+    public static readonly Guid PermisoConsultasAnularId = new("22222222-0000-0000-0000-000000000025");
+    public static readonly Guid PermisoDiagnosticosVerId = new("22222222-0000-0000-0000-000000000026");
+    public static readonly Guid PermisoDiagnosticosCrearId = new("22222222-0000-0000-0000-000000000027");
+    public static readonly Guid PermisoDiagnosticosEditarId = new("22222222-0000-0000-0000-000000000028");
+    public static readonly Guid PermisoHistorialVerId = new("22222222-0000-0000-0000-000000000029");
+
+    // Ajuste post-Etapa 7: permiso dedicado exclusivamente a "puede ser seleccionado como
+    // profesional veterinario responsable de una cita/consulta" -- separado de consultas.crear
+    // porque significan cosas distintas (uno es la capacidad de operar el modulo, este es la
+    // elegibilidad para ser asignado como el veterinario responsable). Continua la misma serie.
+    public static readonly Guid PermisoClinicaEjercerVeterinarioId = new("22222222-0000-0000-0000-000000000030");
+
     public static object[] Roles { get; } =
     [
         new
@@ -77,6 +100,21 @@ internal static class RolesPermisosSeed
         new { Id = PermisoResponsablesVerId, Codigo = "responsables.ver", Nombre = "Ver responsables", Descripcion = (string?)null },
         new { Id = PermisoResponsablesCrearId, Codigo = "responsables.crear", Nombre = "Crear responsables", Descripcion = (string?)null },
         new { Id = PermisoResponsablesEditarId, Codigo = "responsables.editar", Nombre = "Editar responsables", Descripcion = (string?)null },
+        new { Id = PermisoCitasVerId, Codigo = "citas.ver", Nombre = "Ver citas", Descripcion = (string?)null },
+        new { Id = PermisoCitasCrearId, Codigo = "citas.crear", Nombre = "Crear citas", Descripcion = (string?)null },
+        new { Id = PermisoCitasEditarId, Codigo = "citas.editar", Nombre = "Editar citas", Descripcion = (string?)null },
+        new { Id = PermisoCitasCancelarId, Codigo = "citas.cancelar", Nombre = "Cancelar citas", Descripcion = (string?)null },
+        new { Id = PermisoCitasCambiarEstadoId, Codigo = "citas.cambiar_estado", Nombre = "Cambiar estado de citas", Descripcion = (string?)null },
+        new { Id = PermisoConsultasVerId, Codigo = "consultas.ver", Nombre = "Ver consultas", Descripcion = (string?)null },
+        new { Id = PermisoConsultasCrearId, Codigo = "consultas.crear", Nombre = "Crear consultas", Descripcion = (string?)null },
+        new { Id = PermisoConsultasEditarBorradorId, Codigo = "consultas.editar_borrador", Nombre = "Editar consultas en borrador", Descripcion = (string?)null },
+        new { Id = PermisoConsultasFinalizarId, Codigo = "consultas.finalizar", Nombre = "Finalizar consultas", Descripcion = (string?)null },
+        new { Id = PermisoConsultasAnularId, Codigo = "consultas.anular", Nombre = "Anular consultas", Descripcion = (string?)null },
+        new { Id = PermisoDiagnosticosVerId, Codigo = "diagnosticos.ver", Nombre = "Ver diagnósticos", Descripcion = (string?)null },
+        new { Id = PermisoDiagnosticosCrearId, Codigo = "diagnosticos.crear", Nombre = "Crear diagnósticos", Descripcion = (string?)null },
+        new { Id = PermisoDiagnosticosEditarId, Codigo = "diagnosticos.editar", Nombre = "Editar diagnósticos", Descripcion = (string?)null },
+        new { Id = PermisoHistorialVerId, Codigo = "historial.ver", Nombre = "Ver historial clínico", Descripcion = (string?)null },
+        new { Id = PermisoClinicaEjercerVeterinarioId, Codigo = "clinica.ejercer_veterinario", Nombre = "Ejercer como veterinario responsable", Descripcion = (string?)null },
     ];
 
     public static object[] RolesPermisos { get; } =
@@ -124,5 +162,43 @@ internal static class RolesPermisosSeed
         new { RolId = RolAsistenteId, PermisoId = PermisoResponsablesVerId },
         new { RolId = RolAsistenteId, PermisoId = PermisoResponsablesCrearId },
         new { RolId = RolAsistenteId, PermisoId = PermisoResponsablesEditarId },
+
+        // Etapa 7 -- ADMINISTRADOR_VETERINARIA: toda la agenda + lectura de lo clinico. NO se
+        // asume permiso clinico de escritura solo por ser administrador (seccion 31): si tambien
+        // ejerce como veterinario, necesita ademas el rol VETERINARIO.
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoCitasVerId },
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoCitasCrearId },
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoCitasEditarId },
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoCitasCancelarId },
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoCitasCambiarEstadoId },
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoHistorialVerId },
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoConsultasVerId },
+        new { RolId = RolAdministradorVeterinariaId, PermisoId = PermisoDiagnosticosVerId },
+
+        // Etapa 7 -- VETERINARIO: agenda de solo lectura + todo lo clinico.
+        new { RolId = RolVeterinarioId, PermisoId = PermisoCitasVerId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoConsultasVerId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoConsultasCrearId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoConsultasEditarBorradorId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoConsultasFinalizarId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoConsultasAnularId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoDiagnosticosVerId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoDiagnosticosCrearId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoDiagnosticosEditarId },
+        new { RolId = RolVeterinarioId, PermisoId = PermisoHistorialVerId },
+
+        // Etapa 7 -- ASISTENTE: gestiona la agenda pero NUNCA crea consultas ni diagnosticos.
+        new { RolId = RolAsistenteId, PermisoId = PermisoCitasVerId },
+        new { RolId = RolAsistenteId, PermisoId = PermisoCitasCrearId },
+        new { RolId = RolAsistenteId, PermisoId = PermisoCitasEditarId },
+        new { RolId = RolAsistenteId, PermisoId = PermisoCitasCancelarId },
+        new { RolId = RolAsistenteId, PermisoId = PermisoCitasCambiarEstadoId },
+        new { RolId = RolAsistenteId, PermisoId = PermisoHistorialVerId },
+        new { RolId = RolAsistenteId, PermisoId = PermisoConsultasVerId },
+
+        // Ajuste post-Etapa 7: clinica.ejercer_veterinario se asigna UNICAMENTE a VETERINARIO
+        // -- ni ADMINISTRADOR_VETERINARIA ni ASISTENTE lo reciben por defecto. Un administrador
+        // que tambien ejerce como veterinario necesita ademas el rol VETERINARIO.
+        new { RolId = RolVeterinarioId, PermisoId = PermisoClinicaEjercerVeterinarioId },
     ];
 }
